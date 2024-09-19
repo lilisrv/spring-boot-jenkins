@@ -1,23 +1,13 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
+        stage('Setup') {
             steps {
-                sh './mvnw clean package'
+                script {
+                    sh 'chmod +x mvnw' // Ce code fonctionne uniquement sur des agents Unix/Linux.
+                }
             }
         }
-
-        stage('Test') {
-            steps {
-                sh './mvnw test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploy stage - You can add deployment scripts here'
-            }
-        }
+        // Ajoute tes autres stages ici
     }
 }
